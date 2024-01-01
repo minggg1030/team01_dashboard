@@ -27,11 +27,11 @@ const linkQuery = computed(() => {
 	<div class="navbar">
 		<div class="navbar-logo">
 			<div class="navbar-logo-image">
-				<img src="../assets/images/TUIC.svg" alt="tuic logo" />
+				<img src="../assets/images/TUIC.svg" alt="toua logo" />
 			</div>
 			<div>
 				<h1>{{ VITE_APP_TITLE }}</h1>
-				<h2>Taipei City Dashboard Open Source</h2>
+				<h2>Taoyuan City Dashboard</h2>
 			</div>
 		</div>
 		<div class="navbar-tabs hide-if-mobile">
@@ -39,7 +39,7 @@ const linkQuery = computed(() => {
 			<router-link :to="`/mapview${linkQuery}`">地圖交叉比對</router-link>
 		</div>
 		<div class="navbar-user">
-			<a href="https://tuic.gov.taipei/documentation/front-end" target="_blank"
+			<a href="https://www.tycg.gov.tw/" target="_blank"
 				rel="noreferrer"><button><span>help</span></button></a>
 			<button class="hide-if-mobile" @click="toggle"><span>{{ isFullscreen ? 'fullscreen_exit' : 'fullscreen'
 			}}</span></button>
