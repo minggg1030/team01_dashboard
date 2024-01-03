@@ -45,13 +45,21 @@ onMounted(() => {
 		<SideBarTab
 			v-for="item in contentStore.dashboards.filter((item) => item.index !== 'map-layers' && item.index !== 'favorites')"
 			:icon="item.icon" :title="item.name" :index="item.index" :key="item.index" :expanded="isExpanded" />
-		<h2>{{ isExpanded ? `基本地圖圖層` : `圖層` }}</h2>
+		
+		
+			<h2>{{ isExpanded ? `基本地圖圖層` : `圖層` }}</h2>
 		<SideBarTab icon="public" title="圖資資訊" :expanded="isExpanded" index="map-layers" />
 		<button class="sidebar-collapse-button" @click="toggleExpand"><span>{{ isExpanded ? "keyboard_double_arrow_left" :
 			"keyboard_double_arrow_right"
 		}}</span></button>
+
 		<h2>{{ isExpanded ? `我的最愛` : `最愛` }}</h2>
 		<SideBarTab icon="favorite" title="收藏組件" :expanded="isExpanded" index="favorites" />
+
+		<div class="sidebar-sub-add">
+			<h2>{{ isExpanded ? `戰情中心` : `戰情` }}</h2>
+		</div>
+		
 	</div>
 </template>
 

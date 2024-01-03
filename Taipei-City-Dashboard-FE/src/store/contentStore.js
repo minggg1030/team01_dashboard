@@ -95,6 +95,34 @@ export const useContentStore = defineStore("content", {
 					console.error(e);
 				});
 		},
+				setDashboards() {
+			this.loading = true;
+			axios
+				.get(`${BASE_URL}/dashboards/all_dashboards.json`)
+				.then((rs) => {
+					this.dashboards = rs.data.data;
+					if (!this.currentDashboard.index) {
+						this.currentDashboard.index = this.dashboards[0].index;
+						router.replace({
+							query: {
+								index: this.currentDashboard.index,
+							},
+						});
+					}
+					// Pick out the list of favorite components
+					const favorites = this.dashboards.find(
+						(item) => item.index === "favorites"
+					);
+					this.favorites = [...favorites.components];
+					// After getting dashboard info, call the setComponents (3.) method to get component info
+					this.setComponents();
+				})
+				.catch((e) => {
+					this.loading = false;
+					this.error = true;
+					console.error(e);
+				});
+		},
 		// 3. Call and API to get all components info
 		setComponents() {
 			axios

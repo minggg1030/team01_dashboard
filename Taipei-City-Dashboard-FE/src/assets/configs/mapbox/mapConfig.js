@@ -2,14 +2,14 @@
 export const MapObjectConfig = {
 	antialias: true,
 	container: "mapboxBox",
-	center: [121.30099325931337, 24.993028500784582],
+	center: [121.2168, 24.93759],
 	maxBounds: [
 	 [120.87806345306109, 24.57528011803145], // Southwest coordinates
 	 [121.51292552403993, 25.166198765679653], // Northeast coordinates
 	],
 	zoom: 12.5,
-	minZoom: 11,
-	maxZoom: 22,
+	minZoom: 0,
+	maxZoom: 30,
 	projection: "globe", // display the map as a 3D globe
    };
 
@@ -309,6 +309,20 @@ export const maplayerCommonLayout = {
 	},
 	"symbol-bus": {
 		"icon-image": "bus",
+		"icon-size": [
+			"interpolate",
+			["linear"],
+			["zoom"],
+			11.99,
+			0.7,
+			14,
+			1.1,
+			22,
+			1.4,
+		],
+	},
+	"symbol-feed_collect": {
+		"icon-image": "feed_collect",
 		"icon-size": [
 			"interpolate",
 			["linear"],

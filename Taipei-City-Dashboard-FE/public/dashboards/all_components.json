@@ -4188,15 +4188,13 @@
 			],
 			"contributors": ["tuic"]
 		},
+		
 		"148": {
 			"id": 148,
 			"index": "feed_collection",
 			"map_config": [
 				{
 					"index": "feed_origin_center",
-					"paint": {
-						"circle-color": "#e7d198"
-					},
 					"property": [
 						{
 							"key": "tel",
@@ -4223,50 +4221,30 @@
 							"name": "提醒"
 						}
 					],
-					"type": "circle",
-					"icon": "heatmap",
-					"size": "big",
-					"title": "哺集乳室"
+					"type": "symbol",
+					"icon": "feed_collect",
+					"title": "哺乳室"
 				}
 			],
-			"history_data": true,
+			"name": "哺乳室",
 			"chart_config": {
-				"types": ["DistrictChart", "ColumnChart","RadarChart"],
-				"color": ["#77e6ff","#b9734a","#9f4333"],
-				"unit": "間",
-				"map_filter": [
-					"dist",
-					[
-						"北投區",
-						"士林區",
-						"內湖區",
-						"南港區",
-						"松山區",
-						"信義區",
-						"中山區",
-						"大同區",
-						"中正區",
-						"萬華區",
-						"大安區",
-						"文山區"
-					]
-				]
+				"types": ["MapLegend"]
 			},
-			"name": "台北市哺集乳室分佈",
-			"source": null,
+			"chart_data": [
+				{
+					"type": "symbol",
+					"name": "哺乳室",
+					"icon": null
+				}
+			],
+			"source": "哺乳室",
 			"time_from": null,
 			"time_to": null,
 			"update_freq": null,
 			"update_freq_unit": null,
-			"short_desc": "顯示台北市哺集乳室分布",
-			"long_desc": "台北市的哺乳室地圖包含各種場所，如百貨公司、捷運站、公共場所等。提供方便的哺乳環境，以滿足媽媽和嬰兒的需求。這些設施通常配有舒適的座椅、嬰兒專用空間和更衛生的環境，為媽媽提供方便、舒適的哺乳體驗。",
-			"use_case": null,
-			"links": [
-				"https://data.taipei/dataset/detail?id=5d1d34d8-1b81-4162-87b6-05e0896af958"
-			],
-			"tags": [],
 			"contributors": ["tuic"]
 		},
+
 		"149":{
 			"id":149,
 			"index":"baby_ins",
@@ -4292,6 +4270,7 @@
 			],
 			"contributors":["tuic"]
 		 },
+		 
 		 "150":{
 			"id":150,
 			"index":"TEST",

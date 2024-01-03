@@ -1,0 +1,35 @@
+Quick Start
+Docker
+Install Docker on your computer and start running it.
+Fork this repository then clone the project to your computer. Execute pwd (mac) or cd in the repository terminal to get the complete path.
+Execute the following command in the system terminal and replace "" with the path you got in step 2.
+docker run -v <repository path>:/opt/Taipei-City-Dashboard-FE -p 80:80 -it node:18.18.1-alpine3.18  sh
+Execute the following commands to enter the project folder and install packages.
+cd /opt/Taipei-City-Dashboard-FE
+npm install
+You should now be able to locally host this project by executing npm run dev in the respository terminal.
+Refer to the Docs to complete further configurations.
+Local Environment
+Download Node.js on your computer.
+Fork this repository then clone the project to your computer.
+Execute npm install in the respository terminal
+You should now be able to locally host this project by executing npm run dev in the respository terminal.
+Refer to the Docs to complete further configurations.
+ 
+
+請解壓縮
+[target folder]SA/demo code/team01_dashboard/Taipei-City-Dashboard-FE/public/mapData
+
+並修改
+[target folder]SA/demo code/team01_dashboard/Taipei-City-Dashboard-FE/.env
+
+
+code parse :
+
+BASE_URL=../..
+VITE_APP_TITLE=桃園城市儀表板 # The title of this application
+VITE_MAPBOXTOKEN=pk.eyJ1IjoiYW5keWNoZW5taW5nIiwiYSI6ImNscDJrZXEzbzBwZXYyam1qOW01bXdwNGwifQ.GoO5zrhBrczfu77w-fD2aQ # Enter your Mapbox token here
+VITE_MAPBOXTILE= # Enter Mapbox Tileset link to 3d building layers
+
+
+
