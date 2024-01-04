@@ -37,10 +37,10 @@ onMounted(() => {
 <template>
 	<div :class="{ sidebar: true, 'sidebar-collapse': !isExpanded, 'hide-if-mobile': true }">
 		<div class="sidebar-sub-add">
-			<h2>{{ isExpanded ? `儀表板列表` : `列表` }}</h2>
-			<button v-if="isExpanded"
+			<h2>{{ isExpanded ? `戰情中心🖥️` : `列表` }}</h2>
+			<!-- <button v-if="isExpanded"
 				@click="dialogStore.showDialog('addDashboard')"><span>add_circle_outline</span>新增</button>
-			<AddDashboard />
+			<AddDashboard /> -->
 		</div>
 		<SideBarTab
 			v-for="item in contentStore.dashboards.filter((item) => item.index !== 'map-layers' && item.index !== 'favorites')"
@@ -56,9 +56,9 @@ onMounted(() => {
 		<h2>{{ isExpanded ? `我的最愛` : `最愛` }}</h2>
 		<SideBarTab icon="favorite" title="收藏組件" :expanded="isExpanded" index="favorites" />
 
-		<div class="sidebar-sub-add">
+		<!-- <div class="sidebar-sub-add">
 			<h2>{{ isExpanded ? `戰情中心` : `戰情` }}</h2>
-		</div>
+		</div> -->
 		
 	</div>
 </template>

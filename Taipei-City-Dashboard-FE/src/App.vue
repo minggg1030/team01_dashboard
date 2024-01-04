@@ -47,13 +47,17 @@ onMounted(() => {
 		<NotificationBar />
 		<NavBar />
 		<div class="app-content">
-			<SideBar />
+			
 			<div class="app-content-main">
+				
 				<SettingsBar />
 				<RouterView></RouterView>
+				
 			</div>
+			<SideBar />
 		</div>
-		<InitialWarning />
+		<!-- <NotificationBar /> -->
+		<!-- <InitialWarning /> -->
 	</div>
 </template>
 

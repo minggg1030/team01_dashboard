@@ -18,7 +18,7 @@ export const useAuthStore = defineStore("auth", {
 			email: "tuic-admin@gov.taipei",
 			gid: 1,
 			id: 1,
-			name: "儀表板測試者🤩",
+			name: "儀表板測試者👻",
 			status: 1,
 			type: 0,
 		},
@@ -36,7 +36,7 @@ export const useAuthStore = defineStore("auth", {
 			const dialogStore = useDialogStore();
 			dialogStore.showNotification(
 				"fail",
-				"尚未新增用戶管理功能，無法登出"
+				"測試版無法登出"
 			);
 		},
 

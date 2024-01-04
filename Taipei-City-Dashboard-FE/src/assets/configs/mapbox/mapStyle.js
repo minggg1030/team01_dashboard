@@ -45,7 +45,8 @@ export default {
                         ["point-of-interest-labels", "poi-labels"],
                         ["transit", "transit-labels"],
                         ["place-labels", "place-labels"],
-                        "ming-an-chen"
+                        "original",
+                        "building (1)"
                     ]
                 }
             ],
@@ -108,14 +109,18 @@ export default {
                 },
                 "transit": {"airport-label": {"paint": {"text-opacity": 0}}},
                 "natural-features": {
-                    "natural-point-label": {"paint": {"text-opacity": 0}},
+                    "natural-point-label": {
+                        "paint": {"text-opacity": 0},
+                        "layout": {"visibility": "none"}
+                    },
                     "waterway-label": {
                         "layout": {
                             "text-field": [
                                 "coalesce",
                                 ["get", "name_en"],
                                 ["get", "name"]
-                            ]
+                            ],
+                            "visibility": "none"
                         },
                         "paint": {"text-opacity": 0}
                     },
@@ -125,7 +130,8 @@ export default {
                                 "coalesce",
                                 ["get", "name_en"],
                                 ["get", "name"]
-                            ]
+                            ],
+                            "visibility": "none"
                         },
                         "paint": {"text-opacity": 0}
                     },
@@ -135,17 +141,25 @@ export default {
                                 "coalesce",
                                 ["get", "name_en"],
                                 ["get", "name"]
-                            ]
+                            ],
+                            "visibility": "none"
                         },
                         "paint": {"text-opacity": 0}
-                    }
+                    },
+                    "water-line-label": {"layout": {"visibility": "none"}}
                 },
                 "buildings": {
                     "building": {
                         "paint": {
                             "fill-pattern": ["to-string", ["get", "height"]]
-                        }
-                    }
+                        },
+                        "layout": {"visibility": "none"}
+                    },
+                    "building-extrusion": {"layout": {"visibility": "none"}},
+                    "building-outline": {"layout": {"visibility": "none"}},
+                    "building-number-label": {"layout": {"visibility": "none"}},
+                    "building-underground": {"layout": {"visibility": "none"}},
+                    "block-number-label": {"layout": {"visibility": "none"}}
                 }
             },
             "components": {
@@ -160,7 +174,7 @@ export default {
             },
             "propConfig": {
                 "land-and-water": {
-                    "color-base": "rgb(97, 86, 86)",
+                    "color-base": "rgb(152, 124, 124)",
                     "transitionLandOnZoom": true,
                     "landStyle": "Outdoors",
                     "waterStyle": "Shadow",
@@ -170,14 +184,14 @@ export default {
                     "color-airport": "rgb(43, 10, 230)"
                 },
                 "buildings": {
-                    "color-base": "rgb(97, 86, 86)",
+                    "color-base": "rgb(152, 124, 124)",
                     "houseNumbers": false,
                     "3D": false,
                     "haloWidth": 1.9,
                     "underground": false
                 },
                 "road-network": {
-                    "color-base": "rgb(97, 86, 86)",
+                    "color-base": "rgb(152, 124, 124)",
                     "roadsSize": 1,
                     "roadsFont": [
                         "Poppins SemiBold",
@@ -185,19 +199,20 @@ export default {
                     ]
                 },
                 "admin-boundaries": {
-                    "color-base": "rgb(97, 86, 86)",
+                    "color-base": "rgb(152, 124, 124)",
                     "color-admin-boundary": "hsl(0, 94%, 45%)",
                     "admin0Width": 1.3,
-                    "admin1Width": 1.6
+                    "admin1Width": 1.6,
+                    "admin2": false
                 },
                 "natural-features": {
-                    "color-base": "rgb(97, 86, 86)",
+                    "color-base": "rgb(152, 124, 124)",
                     "labelStyle": "Text only",
                     "density": 4,
                     "poiEtcFont": ["Overpass Black", "Arial Unicode MS Regular"]
                 },
                 "point-of-interest-labels": {
-                    "color-base": "rgb(97, 86, 86)",
+                    "color-base": "rgb(152, 124, 124)",
                     "labelStyle": "Text only",
                     "density": 1,
                     "color-greenspace": "hsl(185, 5%, 64%)",
@@ -223,10 +238,10 @@ export default {
                         "Overpass Black",
                         "Arial Unicode MS Regular"
                     ],
-                    "color-base": "rgb(97, 86, 86)"
+                    "color-base": "rgb(152, 124, 124)"
                 },
                 "place-labels": {
-                    "color-base": "rgb(97, 86, 86)",
+                    "color-base": "rgb(152, 124, 124)",
                     "settlementsMajorFont": [
                         "DIN Pro Bold",
                         "Arial Unicode MS Regular"
@@ -238,7 +253,7 @@ export default {
                 }
             }
         },
-        "mapbox:thumb": "data:image/webp;base64,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",
+        "mapbox:thumb": "data:image/webp;base64,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",
         "mapbox:autocomposite": true,
         "mapbox:sdk-support": {
             "android": "9.3.0",
@@ -313,18 +328,24 @@ export default {
             }
         }
     },
-    "center": [121.30100900000002, 24.992824999999996],
-    "zoom": 16,
-    "bearing": 139.3515765570096,
-    "pitch": 53.00000000000002,
+    "center": [121.23413809620729, 24.94796127292352],
+    "zoom": 17.82031303271435,
+    "bearing": -30.16495700018868,
+    "pitch": 40.00000000000001,
     "lights": [],
+    "terrain": {"source": "mapbox-dem", "exaggeration": 2},
     "sources": {
+        "mapbox-dem": {
+            "url": "mapbox://mapbox.mapbox-terrain-dem-v1",
+            "type": "raster-dem",
+            "tileSize": 512
+        },
         "composite": {
-            "url": "mapbox://mapbox.mapbox-terrain-v2,mapbox.mapbox-streets-v8,andychenming.clqxsfe8m9ag11tr0mn90alwg-6ty18",
+            "url": "mapbox://mapbox.mapbox-terrain-v2,mapbox.mapbox-streets-v8,andychenming.clqxyw0w29c4620p8rrddl0ug-77b3d",
             "type": "vector"
         }
     },
-    "sprite": "mapbox://sprites/andychenming/clqxoutc0006f01pma0c9hsb6/33cmhdiq7y3az9tindn1byps4",
+    "sprite": "mapbox://sprites/andychenming/clqxoutc0006f01pma0c9hsb6/87ekk3hbix305o2qd4u1vir0p",
     "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
     "layers": [
         {
@@ -363,8 +384,8 @@ export default {
                     "match",
                     ["get", "class"],
                     "snow",
-                    "rgb(128, 113, 113)",
-                    "hsl(167, 5%, 12%)"
+                    "rgb(166, 142, 142)",
+                    "hsl(167, 8%, 27%)"
                 ],
                 "fill-opacity": [
                     "interpolate",
@@ -517,7 +538,7 @@ export default {
             "minzoom": 15,
             "filter": ["==", ["get", "class"], "pitch"],
             "layout": {},
-            "paint": {"line-color": "hsl(167, 3%, 12%)"}
+            "paint": {"line-color": "hsl(167, 3%, 28%)"}
         },
         {
             "id": "land Mask",
@@ -574,7 +595,7 @@ export default {
                 "line-join": "round"
             },
             "paint": {
-                "line-color": "rgb(28, 25, 25)",
+                "line-color": "rgb(66, 53, 53)",
                 "line-width": [
                     "interpolate",
                     ["exponential", 1.3],
@@ -616,7 +637,7 @@ export default {
             "source-layer": "water",
             "layout": {},
             "paint": {
-                "fill-color": "rgb(28, 25, 25)",
+                "fill-color": "rgb(66, 53, 53)",
                 "fill-translate": [
                     "interpolate",
                     ["exponential", 1.2],
@@ -644,7 +665,7 @@ export default {
                 "line-join": "round"
             },
             "paint": {
-                "line-color": "rgb(53, 49, 49)",
+                "line-color": "rgb(92, 76, 76)",
                 "line-width": [
                     "interpolate",
                     ["exponential", 1.3],
@@ -695,7 +716,7 @@ export default {
                 false
             ],
             "paint": {
-                "fill-color": "rgb(78, 59, 59)",
+                "fill-color": "rgb(132, 75, 75)",
                 "fill-opacity": [
                     "interpolate",
                     ["linear"],
@@ -726,7 +747,7 @@ export default {
             ],
             "layout": {},
             "paint": {
-                "fill-color": "rgb(78, 59, 59)",
+                "fill-color": "rgb(132, 75, 75)",
                 "fill-opacity": [
                     "interpolate",
                     ["linear"],
@@ -756,7 +777,7 @@ export default {
                 ["==", ["get", "class"], "land"]
             ],
             "layout": {},
-            "paint": {"fill-color": "rgb(66, 61, 61)"}
+            "paint": {"fill-color": "rgb(108, 88, 88)"}
         },
         {
             "id": "land-structure-line",
@@ -784,7 +805,7 @@ export default {
                     20,
                     40
                 ],
-                "line-color": "rgb(66, 61, 61)"
+                "line-color": "rgb(108, 88, 88)"
             }
         },
         {
@@ -815,9 +836,9 @@ export default {
                     ["linear"],
                     ["zoom"],
                     15,
-                    "rgb(44, 39, 69)",
+                    "rgb(68, 60, 116)",
                     16,
-                    "rgb(33, 22, 97)"
+                    "rgb(50, 33, 153)"
                 ],
                 "fill-opacity": [
                     "interpolate",
@@ -848,9 +869,9 @@ export default {
                     ["linear"],
                     ["zoom"],
                     15,
-                    "rgb(44, 39, 69)",
+                    "rgb(68, 60, 116)",
                     16,
-                    "rgb(33, 22, 97)"
+                    "rgb(50, 33, 153)"
                 ],
                 "line-width": [
                     "interpolate",
@@ -878,9 +899,9 @@ export default {
                 ["!=", ["get", "type"], "building:part"],
                 ["==", ["get", "underground"], "false"]
             ],
-            "layout": {},
+            "layout": {"visibility": "none"},
             "paint": {
-                "line-color": "rgb(52, 51, 51)",
+                "line-color": "rgb(90, 80, 80)",
                 "line-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -916,16 +937,16 @@ export default {
                 ["!=", ["get", "type"], "building:part"],
                 ["==", ["get", "underground"], "false"]
             ],
-            "layout": {},
+            "layout": {"visibility": "none"},
             "paint": {
                 "fill-color": [
                     "interpolate",
                     ["linear"],
                     ["zoom"],
                     15,
-                    "rgb(66, 63, 63)",
+                    "rgb(106, 90, 90)",
                     16,
-                    "rgb(58, 58, 58)"
+                    "rgb(97, 87, 87)"
                 ],
                 "fill-opacity": [
                     "interpolate",
@@ -936,7 +957,7 @@ export default {
                     16,
                     1
                 ],
-                "fill-outline-color": "rgb(52, 51, 51)",
+                "fill-outline-color": "rgb(90, 80, 80)",
                 "fill-pattern": ["to-string", ["get", "height"]]
             }
         },
@@ -1009,7 +1030,7 @@ export default {
                         12
                     ]
                 ],
-                "line-color": "rgb(59, 55, 55)",
+                "line-color": "rgb(100, 81, 81)",
                 "line-opacity": ["step", ["zoom"], 1, 14, 0]
             }
         },
@@ -1066,7 +1087,7 @@ export default {
                     20,
                     2
                 ],
-                "line-color": "rgb(93, 90, 90)",
+                "line-color": "rgb(136, 117, 117)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1129,7 +1150,7 @@ export default {
                     18,
                     2
                 ],
-                "line-color": "rgb(93, 90, 90)",
+                "line-color": "rgb(136, 117, 117)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1175,7 +1196,7 @@ export default {
                     20,
                     2
                 ],
-                "line-color": "rgb(93, 90, 90)",
+                "line-color": "rgb(136, 117, 117)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1217,7 +1238,7 @@ export default {
                     18,
                     2
                 ],
-                "line-color": "rgb(93, 90, 90)",
+                "line-color": "rgb(136, 117, 117)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1257,7 +1278,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(59, 55, 55)",
+                "line-color": "rgb(100, 81, 81)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -1308,7 +1329,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(59, 55, 55)"
+                "line-color": "rgb(100, 81, 81)"
             }
         },
         {
@@ -1380,7 +1401,7 @@ export default {
                         12
                     ]
                 ],
-                "line-color": "rgb(59, 55, 55)",
+                "line-color": "rgb(100, 81, 81)",
                 "line-opacity": ["step", ["zoom"], 0, 14, 1]
             }
         },
@@ -1417,7 +1438,7 @@ export default {
                     18,
                     ["match", ["get", "class"], "primary", 32, 26]
                 ],
-                "line-color": "rgb(59, 55, 55)"
+                "line-color": "rgb(100, 81, 81)"
             }
         },
         {
@@ -1526,7 +1547,7 @@ export default {
                     18,
                     32
                 ],
-                "line-color": "rgb(59, 55, 55)"
+                "line-color": "rgb(100, 81, 81)"
             }
         },
         {
@@ -1647,7 +1668,7 @@ export default {
                     18,
                     12
                 ],
-                "line-color": "rgb(87, 81, 81)",
+                "line-color": "rgb(132, 108, 108)",
                 "line-opacity": ["step", ["zoom"], 1, 14, 0]
             }
         },
@@ -1693,7 +1714,7 @@ export default {
                     20,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1744,7 +1765,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(87, 81, 81)",
+                "line-color": "rgb(132, 108, 108)",
                 "line-opacity": ["step", ["zoom"], 1, 14, 0]
             }
         },
@@ -1784,7 +1805,7 @@ export default {
                     20,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1835,7 +1856,7 @@ export default {
                     18,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1878,7 +1899,7 @@ export default {
                     18,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1927,7 +1948,7 @@ export default {
                     20,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -1972,7 +1993,7 @@ export default {
                     18,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -2018,7 +2039,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(87, 81, 81)",
+                "line-color": "rgb(132, 108, 108)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -2072,7 +2093,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -2112,8 +2133,8 @@ export default {
             ],
             "layout": {},
             "paint": {
-                "fill-color": "rgb(87, 81, 81)",
-                "fill-outline-color": "rgb(58, 58, 58)"
+                "fill-color": "rgb(132, 108, 108)",
+                "fill-outline-color": "rgb(97, 87, 87)"
             }
         },
         {
@@ -2158,7 +2179,7 @@ export default {
                     18,
                     12
                 ],
-                "line-color": "rgb(87, 81, 81)",
+                "line-color": "rgb(132, 108, 108)",
                 "line-opacity": ["step", ["zoom"], 0, 14, 1]
             }
         },
@@ -2200,7 +2221,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(87, 81, 81)",
+                "line-color": "rgb(132, 108, 108)",
                 "line-opacity": ["step", ["zoom"], 0, 14, 1]
             }
         },
@@ -2240,7 +2261,7 @@ export default {
                     18,
                     26
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -2273,7 +2294,7 @@ export default {
                     18,
                     32
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -2384,7 +2405,7 @@ export default {
                     18,
                     32
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -2410,7 +2431,7 @@ export default {
             ],
             "layout": {"line-join": "round"},
             "paint": {
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -2585,7 +2606,7 @@ export default {
                         12
                     ]
                 ],
-                "line-color": "rgb(87, 81, 81)",
+                "line-color": "rgb(132, 108, 108)",
                 "line-opacity": ["step", ["zoom"], 1, 14, 0]
             }
         },
@@ -2642,7 +2663,7 @@ export default {
                     20,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -2704,7 +2725,7 @@ export default {
                     18,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -2751,7 +2772,7 @@ export default {
                     20,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -2793,7 +2814,7 @@ export default {
                     18,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -2832,7 +2853,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(87, 81, 81)",
+                "line-color": "rgb(132, 108, 108)",
                 "line-dasharray": [
                     "step",
                     ["zoom"],
@@ -2884,7 +2905,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -2959,7 +2980,7 @@ export default {
                         12
                     ]
                 ],
-                "line-color": "rgb(87, 81, 81)",
+                "line-color": "rgb(132, 108, 108)",
                 "line-opacity": ["step", ["zoom"], 0, 14, 1]
             }
         },
@@ -2999,7 +3020,7 @@ export default {
                     18,
                     ["match", ["get", "class"], "primary", 32, 26]
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -3109,7 +3130,7 @@ export default {
                     18,
                     32
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -3146,7 +3167,7 @@ export default {
                     20,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -3188,7 +3209,7 @@ export default {
                     18,
                     2
                 ],
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-gap-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -3236,7 +3257,7 @@ export default {
                     18,
                     18
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -3270,7 +3291,7 @@ export default {
                     18,
                     32
                 ],
-                "line-color": "rgb(87, 81, 81)"
+                "line-color": "rgb(132, 108, 108)"
             }
         },
         {
@@ -3331,7 +3352,7 @@ export default {
             ],
             "layout": {"line-join": "round"},
             "paint": {
-                "line-color": "rgb(58, 58, 58)",
+                "line-color": "rgb(97, 87, 87)",
                 "line-width": [
                     "interpolate",
                     ["exponential", 1.5],
@@ -3366,9 +3387,9 @@ export default {
                     ["linear"],
                     ["zoom"],
                     8,
-                    "rgb(66, 61, 61)",
+                    "rgb(108, 88, 88)",
                     16,
-                    "hsl(0, 100%, 40%)"
+                    "hsl(0, 100%, 53%)"
                 ],
                 "line-width": [
                     "interpolate",
@@ -3432,9 +3453,9 @@ export default {
                     ["linear"],
                     ["zoom"],
                     6,
-                    "rgb(66, 61, 61)",
+                    "rgb(108, 88, 88)",
                     8,
-                    "hsl(0, 100%, 40%)"
+                    "hsl(0, 100%, 53%)"
                 ],
                 "line-opacity": [
                     "interpolate",
@@ -3693,8 +3714,8 @@ export default {
                 "text-letter-spacing": 0.01
             },
             "paint": {
-                "text-color": "rgb(194, 190, 190)",
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-color": "rgb(231, 226, 226)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-width": 1,
                 "text-halo-blur": 1
             }
@@ -3883,9 +3904,10 @@ export default {
                 ],
                 "symbol-placement": "line",
                 "text-pitch-alignment": "viewport",
-                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]]
+                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+                "visibility": "none"
             },
-            "paint": {"text-color": "rgb(117, 108, 108)", "text-opacity": 0}
+            "paint": {"text-color": "rgb(160, 138, 138)", "text-opacity": 0}
         },
         {
             "id": "natural-line-label",
@@ -3933,13 +3955,14 @@ export default {
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
                 "text-font": ["Overpass Black", "Arial Unicode MS Regular"],
                 "symbol-placement": "line-center",
-                "text-pitch-alignment": "viewport"
+                "text-pitch-alignment": "viewport",
+                "visibility": "none"
             },
             "paint": {
                 "text-halo-width": 0.5,
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-blur": 0.5,
-                "text-color": "rgb(194, 190, 190)",
+                "text-color": "rgb(231, 226, 226)",
                 "text-opacity": 0
             }
         },
@@ -3994,7 +4017,8 @@ export default {
                 "icon-image": "",
                 "text-font": ["Overpass Black", "Arial Unicode MS Regular"],
                 "text-offset": ["literal", [0, 0]],
-                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]]
+                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+                "visibility": "none"
             },
             "paint": {
                 "icon-opacity": [
@@ -4004,10 +4028,10 @@ export default {
                     17,
                     ["step", ["get", "sizerank"], 0, 13, 1]
                 ],
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-width": 0.5,
                 "text-halo-blur": 0.5,
-                "text-color": "rgb(194, 190, 190)",
+                "text-color": "rgb(231, 226, 226)",
                 "text-opacity": 0
             }
         },
@@ -4074,9 +4098,10 @@ export default {
                 "text-font": ["DIN Pro Italic", "Arial Unicode MS Regular"],
                 "symbol-placement": "line-center",
                 "text-pitch-alignment": "viewport",
-                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]]
+                "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]],
+                "visibility": "none"
             },
-            "paint": {"text-color": "rgb(117, 108, 108)"}
+            "paint": {"text-color": "rgb(160, 138, 138)"}
         },
         {
             "id": "water-point-label",
@@ -4148,9 +4173,10 @@ export default {
                     ["bay", "water"],
                     7,
                     10
-                ]
+                ],
+                "visibility": "none"
             },
-            "paint": {"text-color": "rgb(117, 108, 108)", "text-opacity": 0}
+            "paint": {"text-color": "rgb(160, 138, 138)", "text-opacity": 0}
         },
         {
             "id": "poi-label",
@@ -4188,7 +4214,7 @@ export default {
                 "text-field": ["coalesce", ["get", "name_en"], ["get", "name"]]
             },
             "paint": {
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-width": 0.5,
                 "text-halo-blur": 0.5,
                 "text-color": [
@@ -4197,17 +4223,17 @@ export default {
                     [
                         "step",
                         ["get", "sizerank"],
-                        "rgb(125, 116, 116)",
+                        "rgb(167, 147, 147)",
                         5,
-                        "rgb(163, 155, 155)"
+                        "rgb(202, 189, 189)"
                     ],
                     17,
                     [
                         "step",
                         ["get", "sizerank"],
-                        "rgb(125, 116, 116)",
+                        "rgb(167, 147, 147)",
                         13,
-                        "rgb(163, 155, 155)"
+                        "rgb(202, 189, 189)"
                     ]
                 ]
             }
@@ -4328,9 +4354,9 @@ export default {
                 ]
             },
             "paint": {
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-width": 1,
-                "text-color": "rgb(165, 158, 158)",
+                "text-color": "rgb(204, 192, 192)",
                 "text-halo-blur": 0.5,
                 "text-opacity": 0
             }
@@ -4535,13 +4561,13 @@ export default {
                 "text-color": [
                     "step",
                     ["get", "symbolrank"],
-                    "rgb(194, 190, 190)",
+                    "rgb(231, 226, 226)",
                     11,
-                    "rgb(163, 155, 155)",
+                    "rgb(202, 189, 189)",
                     16,
-                    "rgb(148, 139, 139)"
+                    "rgb(188, 173, 173)"
                 ],
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-width": 1,
                 "text-halo-blur": 1,
                 "text-opacity": 0
@@ -4731,13 +4757,13 @@ export default {
                 "text-color": [
                     "step",
                     ["get", "symbolrank"],
-                    "rgb(194, 190, 190)",
+                    "rgb(231, 226, 226)",
                     11,
-                    "rgb(163, 155, 155)",
+                    "rgb(202, 189, 189)",
                     16,
-                    "rgb(148, 139, 139)"
+                    "rgb(188, 173, 173)"
                 ],
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-width": 1,
                 "text-halo-blur": 1,
                 "text-opacity": 0
@@ -4788,8 +4814,8 @@ export default {
                 "text-max-width": 6
             },
             "paint": {
-                "text-color": "rgb(125, 116, 116)",
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-color": "rgb(167, 147, 147)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-width": 1
             }
         },
@@ -4887,27 +4913,39 @@ export default {
                 "text-max-width": 6
             },
             "paint": {
-                "text-color": "rgb(129, 119, 119)",
-                "text-halo-color": "rgb(34, 32, 32)",
+                "text-color": "rgb(169, 149, 149)",
+                "text-halo-color": "rgb(82, 69, 69)",
                 "text-halo-width": 1.25
             }
         },
         {
-            "id": "ming-an-chen",
+            "id": "original",
+            "type": "symbol",
+            "source": "composite",
+            "source-layer": "original",
+            "layout": {
+                "text-font": ["Open Sans Bold", "Arial Unicode MS Regular"],
+                "text-field": "桃園市歡迎你!",
+                "text-size": 68,
+                "icon-size": 8
+            },
+            "paint": {"text-color": "rgb(66, 182, 240)"}
+        },
+        {
+            "id": "building (1)",
             "type": "fill-extrusion",
             "source": "composite",
-            "source-layer": "MING-AN_CHEN",
-            "layout": {"fill-extrusion-edge-radius": 0.7},
+            "source-layer": "building",
+            "layout": {"fill-extrusion-edge-radius": 1},
             "paint": {
-                "fill-extrusion-height": 150,
-                "fill-extrusion-color": "rgb(18, 34, 211)",
-                "fill-extrusion-vertical-gradient": false,
-                "fill-extrusion-opacity": 0.49
+                "fill-extrusion-height": ["get", "height"],
+                "fill-extrusion-color": "rgba(0, 12, 245, 0.46)",
+                "fill-extrusion-opacity": 0.67
             }
         }
     ],
     "created": "2024-01-03T11:21:59.041Z",
-    "modified": "2024-01-03T14:41:10.972Z",
+    "modified": "2024-01-04T08:28:07.546Z",
     "id": "clqxoutc0006f01pma0c9hsb6",
     "owner": "andychenming",
     "visibility": "private",
