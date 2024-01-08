@@ -335,6 +335,34 @@ export const maplayerCommonLayout = {
 			1.4,
 		],
 	},
+	"symbol-illegal_parking": {
+		"icon-image": "illegal_parking",
+		"icon-size": [
+			"interpolate",
+			["linear"],
+			["zoom"],
+			11.99,
+			0.7,
+			14,
+			1.1,
+			22,
+			1.4,
+		],
+	},
+	"symbol-parking_lot": {
+		"icon-image": "parking_lot",
+		"icon-size": [
+			"interpolate",
+			["linear"],
+			["zoom"],
+			11.99,
+			0.7,
+			14,
+			1.1,
+			22,
+			1.4,
+		],
+	},
 	"symbol-metro-density": {
 		"icon-image": "metro",
 		"icon-size": [

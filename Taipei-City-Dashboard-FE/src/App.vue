@@ -49,7 +49,6 @@ onMounted(() => {
 		<div class="app-content">
 			
 			<div class="app-content-main">
-				
 				<SettingsBar />
 				<RouterView></RouterView>
 				

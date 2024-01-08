@@ -36,6 +36,7 @@ import MetroChart from "./components/charts/MetroChart.vue";
 import HeatmapChart from "./components/charts/HeatmapChart.vue";
 import PolarChart from "./components/charts/PolarChart.vue";
 import Pyramid from "./components/charts/Pyramid.vue";
+import TaoyuanChart from "./components/charts/TaoyuanChart.vue";
 
 const app = createApp(App);
 
@@ -60,4 +61,5 @@ app.component("MetroChart", MetroChart);
 app.component("HeatmapChart", HeatmapChart);
 app.component("PolarChart", PolarChart);
 app.component("Pyramid", Pyramid);
+app.component("TaoyuanChart", TaoyuanChart);
 app.mount("#app");

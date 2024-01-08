@@ -14,5 +14,6 @@ export const chartTypes = {
 	PolarChart: "極座標圖", // []
 	WordcloudChart: "文字雲", // []
 	PolarChart: "波勒圖",
-	Pyramid: "金字塔"
+	Pyramid: "金字塔",
+	TaoyuanChart: "桃園行政區圖"
 };

@@ -16,7 +16,9 @@ Execute npm install in the respository terminal
 You should now be able to locally host this project by executing npm run dev in the respository terminal.
 Refer to the Docs to complete further configurations.
  
+git clone 
 
+git pull
 請解壓縮
 [target folder]SA/demo code/team01_dashboard/Taipei-City-Dashboard-FE/public/mapData
 

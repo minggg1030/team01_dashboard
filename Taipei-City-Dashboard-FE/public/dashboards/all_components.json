@@ -2309,7 +2309,7 @@
 							750,
 							"rgba(7,160,195,0.75)",
 							1000,
-							"rgba(180,91,91,0.75)",
+							"rgba(255,0,0,0.75)",
 							1600,
 							"#dd1c1a"
 						]
@@ -3706,7 +3706,7 @@
 					"文山區"
 				],
 				"types": ["ColumnChart", "RadarChart", "DistrictChart"],
-				"color": ["#E6DF44", "#F4633C", "#D63940", "#9C2A4B"],
+				"color": ["#FFFFFF", "#F4633C", "#D63940", "#9C2A4B"],
 				"unit": "點",
 				"map_filter": [
 					"dist",
@@ -4222,7 +4222,7 @@
 						}
 					],
 					"type": "symbol",
-					"icon": "feed_collect",
+					"icon": "parking_lot",
 					"title": "哺乳室"
 				}
 			],
@@ -4234,7 +4234,9 @@
 				{
 					"type": "symbol",
 					"name": "哺乳室",
-					"icon": null
+					"icon": null,
+					"value": 4000,
+					"color":"#009688"
 				}
 			],
 			"source": "哺乳室",
@@ -4320,8 +4322,209 @@
 	  
 			],
 			"contributors":["tuic"]
-		 }
-		
+		 },
+		 		
+		"152": {
+			"id": 152,
+			"index": "park",
+			"map_config": [
+				{
+					"index": "park_output",
+					"property": [
+						{
+							"key": "address",
+							"name": "地址"
+						},
+						{
+
+							"key": "surplusSpace",
+							"name": "剩餘空間"
+						},
+						{
+                			"key": "payGuide",
+							"name": "計費方式"
+						}
+
+					],
+					"type": "symbol",
+					"icon": "parking_lot",
+					"title": "公共停車場"
+				}
+			],
+			"name": "公共停車場",
+			"chart_config": {
+				"types": ["MapLegend"]
+			},
+			"chart_data": [
+				{
+					"type": "symbol",
+					"name": "公共停車場",
+					"icon": "parking_lot"
+				}
+			],
+			"source": "公共停車場",
+			"time_from": null,
+			"time_to": null,
+			"update_freq": null,
+			"update_freq_unit": null,
+			"contributors": ["tuic"]
+		},
+		"153": {
+			"id": 153,
+			"index": "parking_illegal",
+			"map_config": [
+				{
+					"index": "parking_illegal",
+
+					"property": [
+						{
+							"key": "address",
+							"name": "違停地點"
+						}
+						
+					],
+					"type": "symbol",
+					"icon": "illegal_parking",
+					"title": "違停點位"
+					
+			}
+			],
+			"history_data": false,
+			"chart_config": {
+				"categories": [
+					"桃園區",
+					"中壢區",
+					"蘆竹區",
+					"龜山區",
+					"新屋區",
+					"楊梅區",
+					"觀音區",
+					"龍潭區"
+				],
+				"types": ["ColumnChart", "RadarChart", "TaoyuanChart"],
+				"color": ["#FFFFFF", "#F4633C", "#D63940", "#9C2A4B"],
+				"unit": "點",
+				"map_filter": [
+					"dist",
+					[
+						"桃園區",
+						"中壢區",
+						"蘆竹區",
+						"龜山區",
+						"新屋區",
+						"楊梅區",
+						"觀音區",
+						"龍潭區"
+					]
+				]
+			},
+			"name": "違停點位",
+			"source": "交通局",
+			"time_from": "2023-07-28T00:00:00+08:00",
+			"update_freq": null,
+			"update_freq_unit": null,
+			"short_desc": "顯示桃園市所有違停車輛的點位。",
+			"long_desc": "顯示桃園市所有違停車輛的點位，資料來源為桃園市開放資料，不定期更新。",
+			"use_case": "透過這些點位資訊，我們可以更有效地規劃路線，降低違停綠，同時也能了解違停分佈情況，並根據需求進行相應的交通政策調整。",
+			"links": [
+				"https://data.taipei/dataset/detail?id=6bb3304b-4f46-4bb0-8cd1-60c66dcd1cae"
+			],
+			"tags": [],
+			"contributors": ["tuic"]
+		},
+		"154": {
+			"id": 154,
+			"index": "metro_passengers",
+			"map_config": [
+				{
+					"color": "#555",
+					"index": "traffic_metro_line",
+					"paint": {
+						"line-color": [
+							"match",
+							["get", "mrtid"],
+							["BL"],
+							"#0070bd",
+							["O"],
+							"#f8b61c",
+							["G"],
+							"#008659",
+							["R"],
+							"#e3002c",
+							["BR"],
+							"#c48c31",
+							["Y"],
+							"#ffdb00",
+							"#505050"
+						]
+					},
+					"property": [
+						{
+							"key": "mrtsys",
+							"name": "系統"
+						},
+						{
+							"key": "mrtid",
+							"name": "代號"
+						},
+						{
+							"key": "mrtcode",
+							"name": "路線"
+						}
+					],
+					"type": "line",
+					"size": null,
+					"icon": null,
+					"title": "捷運路線"
+				},
+				{
+					"index": "traffic_metro_station_new",
+					"property": [
+						{
+							"key": "stationid",
+							"name": "ID"
+						},
+						{
+							"key": "stationname2",
+							"name": "站名"
+						},
+						{
+							"key": "enter",
+							"name": "進站人數"
+						},
+						{
+							"key": "leave",
+							"name": "出站人數"
+						}
+					],
+					"type": "symbol",
+					"size": null,
+					"icon": "metro",
+					"title": "捷運近30分人流"
+				}
+			],
+			"chart_config": {
+				"color": ["#2e999b", "#80e3d4"],
+				"types": ["TimelineStackedChart", "TimelineSeparateChart"],
+				"unit": "件數"
+			},
+			"name": "個時段違停趨勢",
+			"history_data": true,
+			"source": "交通局",
+			"time_from": "2023-05-26T23:29:00+08:00",
+			"time_to": null,
+			"update_freq": 2,
+			"update_freq_unit": "hour",
+			"short_desc": "顯示過去一段時間內全市捷運進出站人流變化",
+			"long_desc": "顯示過去一段時間內全市捷運進出站人流變化，資料來源為台北市捷運工程局內部資料，每30分鐘更新。",
+			"use_case": "掌握過去一段時間內台北市捷運進出站人流變化，包括高峰與低峰時段，有助於更好地管理交通流量與安排車輛運行。",
+			"links": [
+				"https://data.taipei/dataset/detail?id=63f31c7e-7fc3-418b-bd82-b95158755b4d"
+			],
+			"tags": [],
+			"contributors": ["tuic"]
+		}
+
 	}
 	
 	
